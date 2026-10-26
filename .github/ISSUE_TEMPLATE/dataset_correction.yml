@@ -1,0 +1,25 @@
+name: Dataset correction
+description: A wrong field, date or source in data/incidents.csv, or a missing event.
+labels: [dataset]
+body:
+  - type: input
+    id: event
+    attributes:
+      label: Event id
+      placeholder: "e.g. 032 (or 'new event')"
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: Which field(s) and the new value(s). For a new event, the date, name and type.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: A public primary source (vendor advisory, CVE record, researcher write-up or press report) that supports the change.
+    validations:
+      required: true

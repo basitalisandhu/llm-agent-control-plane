@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      # The released numbers depend on benchmark v1.2.2 as shipped in this version.
+      - dependency-name: agentdojo
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly

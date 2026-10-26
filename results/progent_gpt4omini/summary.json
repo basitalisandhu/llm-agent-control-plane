@@ -1,0 +1,44 @@
+{
+ "runs_scored": {
+  "benign": 0,
+  "attack": 0,
+  "incomplete": 0
+ },
+ "usage": {
+  "agent": {}
+ },
+ "usd": {
+  "agent": 0.0,
+  "policy": 0
+ },
+ "prices_per_token": {
+  "input": 1.5e-07,
+  "cached_input": 7.5e-08,
+  "output": 6e-07
+ },
+ "macros": {
+  "uciProg": "--",
+  "uProg": "--",
+  "uaProg": "--",
+  "aciProg": "--",
+  "aProg": "--",
+  "nProgB": "0",
+  "nProgA": "0",
+  "nProgTasksB": "0",
+  "nProgTasksA": "0",
+  "progDenAtk": "--",
+  "progDenBen": "--",
+  "progDenAtkRuns": "0",
+  "progDenBenRuns": "0",
+  "progPolicyCalls": "0",
+  "progAgentCalls": "0",
+  "progCallsPerRun": "--",
+  "progAgentCallsPerRun": "--",
+  "progPolicyUsd": "0.00",
+  "progAgentUsd": "0.00",
+  "progTotalUsd": "0.00",
+  "progPolicyShare": "--",
+  "progUsdPerRun": "--",
+  "progComplete": "partial"
+ }
+}

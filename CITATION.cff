@@ -1,0 +1,52 @@
+cff-version: 1.2.0
+message: "If you use this code or the dataset, please cite the manuscript below."
+type: software
+title: "llm-agent-control-plane: a deterministic policy enforcement point for LLM agents"
+authors:
+  - family-names: Ali
+    given-names: Muhammad Basit
+    affiliation: "Superior University, Lahore, Pakistan"
+repository-code: "https://github.com/basitalisandhu/llm-agent-control-plane"
+license: Apache-2.0
+version: "2.2"
+date-released: "2026-10-26"
+keywords:
+  - ai-security
+  - prompt-injection
+  - llm-agents
+  - confused-deputy
+  - reference-monitor
+  - integrity-labels
+  - agentdojo
+abstract: >-
+  Code, data and experiment scripts for a deterministic control plane for LLM agents: a policy
+  enforcement point that mediates every tool call with a provenance rule on designators and a tiered
+  approval rule, with no model on the decision path; its evaluation on AgentDojo; a model-free replay
+  of all 949 reference trajectories; and an incident dataset of 80 publicly documented events coded
+  under a written codebook.
+preferred-citation:
+  type: conference-paper
+  title: "Provenance-Checked Tool Calls: A Model-Free Reference Monitor for LLM Agents"
+  authors:
+    - family-names: Ali
+      given-names: Muhammad Basit
+      affiliation: "Superior University, Lahore, Pakistan"
+    - family-names: Ali
+      given-names: Nashit
+      affiliation: "Murdoch University, Perth, Australia"
+    - family-names: Iqbal
+      given-names: Muhammad Atif
+      affiliation: "The University of Sydney, Sydney, Australia"
+    - family-names: Saleem
+      given-names: Muhammad Samama
+      affiliation: "University of Management and Technology, Lahore, Pakistan"
+  collection-title: "Proceedings of the 3rd International Conference on Advanced Robotics, Control, and Artificial Intelligence (ARCAI 2026)"
+  conference:
+    name: "ARCAI 2026"
+    city: "Singapore"
+    date-start: "2026-11-22"
+    date-end: "2026-11-26"
+  publisher:
+    name: "Springer"
+  year: 2026
+  notes: "Accepted, to appear. Code and data: https://github.com/basitalisandhu/llm-agent-control-plane"

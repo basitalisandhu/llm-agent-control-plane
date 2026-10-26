@@ -1,0 +1,151 @@
+{
+ "consequential": {
+  "slack": [
+   "add_user_to_channel",
+   "get_webpage",
+   "invite_user_to_slack",
+   "post_webpage",
+   "remove_user_from_slack",
+   "send_channel_message",
+   "send_direct_message"
+  ],
+  "banking": [
+   "schedule_transaction",
+   "send_money",
+   "update_password",
+   "update_scheduled_transaction",
+   "update_user_info"
+  ],
+  "travel": [
+   "cancel_calendar_event",
+   "create_calendar_event",
+   "reserve_car_rental",
+   "reserve_hotel",
+   "reserve_restaurant",
+   "send_email"
+  ],
+  "workspace": [
+   "add_calendar_event_participants",
+   "append_to_file",
+   "cancel_calendar_event",
+   "create_calendar_event",
+   "create_file",
+   "delete_email",
+   "delete_file",
+   "reschedule_calendar_event",
+   "send_email",
+   "share_file"
+  ]
+ },
+ "key_args": {
+  "send_direct_message": [
+   "recipient"
+  ],
+  "send_channel_message": [
+   "channel"
+  ],
+  "add_user_to_channel": [
+   "user",
+   "channel"
+  ],
+  "invite_user_to_slack": [
+   "user",
+   "user_email"
+  ],
+  "remove_user_from_slack": [
+   "user"
+  ],
+  "post_webpage": [
+   "url"
+  ],
+  "get_webpage": [
+   "url"
+  ],
+  "send_money": [
+   "recipient",
+   "amount"
+  ],
+  "schedule_transaction": [
+   "recipient",
+   "amount"
+  ],
+  "update_scheduled_transaction": [
+   "id",
+   "recipient",
+   "amount"
+  ],
+  "update_password": [
+   "password"
+  ],
+  "update_user_info": [
+   "first_name",
+   "last_name",
+   "street",
+   "city"
+  ],
+  "create_calendar_event": [
+   "participants",
+   "start_time"
+  ],
+  "cancel_calendar_event": [
+   "event_id"
+  ],
+  "reserve_hotel": [
+   "hotel"
+  ],
+  "reserve_car_rental": [
+   "company"
+  ],
+  "reserve_restaurant": [
+   "restaurant"
+  ],
+  "send_email": [
+   "recipients",
+   "cc",
+   "bcc",
+   "attachments"
+  ],
+  "delete_email": [
+   "email_id"
+  ],
+  "reschedule_calendar_event": [
+   "event_id",
+   "new_start_time"
+  ],
+  "add_calendar_event_participants": [
+   "event_id",
+   "participants"
+  ],
+  "append_to_file": [
+   "file_id"
+  ],
+  "create_file": [
+   "filename"
+  ],
+  "delete_file": [
+   "file_id"
+  ],
+  "share_file": [
+   "file_id",
+   "email",
+   "permission"
+  ]
+ },
+ "designator_args": [
+  "bcc",
+  "cc",
+  "email",
+  "participants",
+  "recipient",
+  "recipients",
+  "url",
+  "user",
+  "user_email"
+ ],
+ "identifier_args": [
+  "email_id",
+  "event_id",
+  "file_id",
+  "id"
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "runs_scored": {
+  "benign": 97,
+  "attack": 949,
+  "incomplete": 0
+ },
+ "usage": {
+  "agent": {
+   "calls": 4127,
+   "prompt_tokens": 12161881,
+   "completion_tokens": 1934881,
+   "cached_tokens": 8437760
+  },
+  "policy_generate": {
+   "calls": 1084,
+   "prompt_tokens": 3023075,
+   "completion_tokens": 1308294,
+   "cached_tokens": 2829184
+  },
+  "policy_update_decision": {
+   "calls": 3045,
+   "prompt_tokens": 7879373,
+   "completion_tokens": 2243245,
+   "cached_tokens": 7117824
+  },
+  "policy_update": {
+   "calls": 2236,
+   "prompt_tokens": 8921811,
+   "completion_tokens": 3124792,
+   "cached_tokens": 5706368
+  }
+ },
+ "usd": {
+  "agent": 5.01,
+  "policy": 14.79
+ },
+ "prices_per_token": {
+  "input": 2.5e-07,
+  "cached_input": 2.5e-08,
+  "output": 2e-06
+ },
+ "macros": {
+  "uciProg": "72.2 [63, 80]",
+  "uProg": "72.2",
+  "uaProg": "75.1",
+  "aciProg": "0.0 [$\\leq$0.4]",
+  "aProg": "0.0",
+  "nProgB": "97",
+  "nProgA": "949",
+  "nProgTasksB": "97",
+  "nProgTasksA": "4",
+  "progDenAtk": "9.6",
+  "progDenBen": "7.2",
+  "progDenAtkRuns": "91",
+  "progDenBenRuns": "7",
+  "progPolicyCalls": "6\\,365",
+  "progAgentCalls": "4\\,127",
+  "progCallsPerRun": "6.1",
+  "progAgentCallsPerRun": "3.9",
+  "progPolicyUsd": "14.79",
+  "progAgentUsd": "5.01",
+  "progTotalUsd": "19.80",
+  "progPolicyShare": "75",
+  "progUsdPerRun": "0.014",
+  "progComplete": "complete"
+ }
+}

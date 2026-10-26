@@ -1,0 +1,48 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+==========================================================
+
+Copyright 2026 Muhammad Basit Ali
+
+The files in this directory (data/) form the incident dataset released with
+the paper "Provenance-Checked Tool Calls: A Model-Free Reference Monitor
+for LLM Agents" (M. B. Ali, N. Ali, M. A. Iqbal and M. S. Saleem; ARCAI 2026):
+
+* incidents.csv                    the 80 coded events (author's coding)
+* incidents_coder2.csv             blind second coding of lens and vector
+* incidents_coder3.csv             blind third coding of type, lens and vector
+* incidents_coder3_agreement.json  agreement statistics between codings
+* tool_signatures.json             tool signatures used by the policy tables
+* human_coding/                    blind 20-event sheet and scoring script
+
+They are licensed under the Creative Commons Attribution 4.0 International
+licence. In short, you are free to:
+
+* Share: copy and redistribute the material in any medium or format;
+* Adapt: remix, transform and build upon the material for any purpose,
+  even commercially;
+
+under the following terms:
+
+* Attribution: you must give appropriate credit (cite the manuscript or
+  this repository, https://github.com/basitalisandhu/llm-agent-control-plane),
+  provide a link to the licence, and indicate if changes were made. You may
+  do so in any reasonable manner, but not in any way that suggests the
+  licensor endorses you or your use.
+* No additional restrictions: you may not apply legal terms or
+  technological measures that legally restrict others from doing anything
+  the licence permits.
+
+This summary is not a substitute for the licence. The full legal text is at
+
+    https://creativecommons.org/licenses/by/4.0/legalcode
+
+and a human-readable summary at
+
+    https://creativecommons.org/licenses/by/4.0/
+
+Each row of incidents.csv links to the public source it was coded from.
+Those sources remain the property of their respective publishers; the
+licence covers the coding and the compilation, not the linked documents.
+
+The source code in the rest of the repository is licensed separately under
+the Apache License, Version 2.0 (see ../LICENSE).

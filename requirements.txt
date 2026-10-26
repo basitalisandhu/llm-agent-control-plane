@@ -1,0 +1,19 @@
+# Runtime dependencies for the policy enforcement point, the adapters and the
+# experiment scripts. Versions are pinned to the ones the released results
+# were produced with (agentdojo) or verified against (the rest).
+#
+#   uv venv && uv pip install -r requirements.txt
+#   (or) python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#
+# The Progent head-to-head has its own lock file:
+# experiments/progent/requirements.lock.txt
+
+agentdojo==0.1.35
+openai==3.24.0
+boto3==1.43.108
+anthropic[bedrock]==1.11.0
+matplotlib==3.11.2
+
+# Development: unit tests and linting (make test, make lint)
+pytest==9.1.1
+ruff==0.16.10

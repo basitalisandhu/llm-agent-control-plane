@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+runs*/
+*.log
+*.jsonl
+Modelfile*
+key*
+.env
+*.pdf
+.pytest_cache/
+.ruff_cache/
+experiments/progent/progent-repo/

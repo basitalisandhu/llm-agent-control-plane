@@ -1,0 +1,27 @@
+llm-agent-control-plane
+Copyright 2026 Muhammad Basit Ali
+
+This product includes software developed by Muhammad Basit Ali for the
+paper "Provenance-Checked Tool Calls: A Model-Free Reference Monitor for
+LLM Agents" (M. B. Ali, N. Ali, M. A. Iqbal and M. S. Saleem; ARCAI 2026).
+
+Licensing
+---------
+* Source code (pep/, experiments/, tests/ and the build files at the
+  repository root) is licensed under the Apache License, Version 2.0.
+  See LICENSE.
+* The incident dataset (data/incidents.csv, the coder files and the
+  human-coding sheet under data/) is licensed under the Creative Commons
+  Attribution 4.0 International licence (CC BY 4.0). See data/LICENSE.
+* The figures under figures/ are provided for reference; they are not
+  covered by the Apache licence.
+
+Third-party material
+--------------------
+* experiments/progent/ drives the Progent library released by its authors
+  (https://github.com/sunblaze-ucb/progent). The library itself is not
+  included in this repository; it is cloned at the pinned commit by the
+  commands in README.md and is covered by its own licence.
+* The benchmark used in the experiments is AgentDojo
+  (https://github.com/ethz-spylab/agentdojo), installed from PyPI at the
+  pinned version in requirements.txt and covered by its own licence.

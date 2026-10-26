@@ -1,0 +1,34 @@
+name: Matcher decision report
+description: The released matcher admitted or denied a tool call wrongly (not exploitable; otherwise see SECURITY.md).
+labels: [matcher]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        If the problem lets an attacker reach a consequential action with untrusted designators while the
+        paper's assumptions hold, please use private reporting instead (SECURITY.md).
+  - type: dropdown
+    id: version
+    attributes:
+      label: Matcher
+      options:
+        - v2.2 (pep/pep22.py, released)
+        - v2.2 strict (pep/pep_b22.py)
+        - v2.3 write-side labelling (PEP_WRITE_LABELS=1)
+        - other / frozen version
+    validations:
+      required: true
+  - type: textarea
+    id: replay
+    attributes:
+      label: Replay
+      description: Suite, user task, injection task (or the injected text) and the tool-call sequence; or a unit test in the style of tests/test_matcher.py.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision and why it is wrong
+      description: The decision-log line (tool, args, allowed, reason) and which rule you think should have decided differently.
+    validations:
+      required: true

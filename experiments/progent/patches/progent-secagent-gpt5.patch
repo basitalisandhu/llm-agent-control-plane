@@ -1,0 +1,122 @@
+diff --git a/secagent/tool.py b/secagent/tool.py
+index 6274a59..9eedf46 100644
+--- a/secagent/tool.py
++++ b/secagent/tool.py
+@@ -164,6 +164,66 @@ total_completion_tokens = 0
+ total_prompt_tokens = 0
+ 
+ 
++def _is_fixed_temperature_model(name: str) -> bool:
++    """gpt-5 / o-series reasoning models reject every temperature except the default."""
++    return name.startswith(("gpt-5", "o1", "o3", "o4"))
++
++
++def _record_usage(completion, sys_prompt: str, model: str) -> None:
++    """[local patch] Optional token accounting: if SECAGENT_USAGE_LOG is set, append one JSON line per call."""
++    path = os.getenv("SECAGENT_USAGE_LOG")
++    usage = getattr(completion, "usage", None)
++    if not path or usage is None:
++        return
++    try:
++        if sys_prompt.startswith("Your task is to set permissions"):
++            kind = "policy_generate"
++        elif sys_prompt.startswith("Your task is to determine whether"):
++            kind = "policy_update_decision"
++        elif sys_prompt.startswith("Your task is to update the restrictions"):
++            kind = "policy_update"
++        else:
++            kind = "policy_other"
++        details = getattr(usage, "completion_tokens_details", None)
++        pdetails = getattr(usage, "prompt_tokens_details", None)
++        rec = {
++            "kind": kind,
++            "model": model,
++            "prompt_tokens": usage.prompt_tokens,
++            "completion_tokens": usage.completion_tokens,
++            "reasoning_tokens": getattr(details, "reasoning_tokens", 0) or 0,
++            "cached_tokens": getattr(pdetails, "cached_tokens", 0) or 0,
++        }
++        with open(path, "a") as f:
++            f.write(json.dumps(rec) + "\n")
++    except Exception:
++        pass
++
++
++def _chat_create(client, **kwargs):
++    """[local patch] chat.completions.create that never sends `temperature` to models that reject it
++    (gpt-5*, o1*, o3*, o4*), and drops `temperature`/`seed` once if the API rejects them anyway."""
++    from openai import BadRequestError
++    if _is_fixed_temperature_model(kwargs["model"]):
++        kwargs.pop("temperature", None)
++    completion = None
++    for _ in range(3):
++        try:
++            completion = client.chat.completions.create(**kwargs)
++            break
++        except BadRequestError as e:
++            msg = str(e).lower()
++            dropped = False
++            for param in ("temperature", "seed"):
++                if param in kwargs and param in msg:
++                    kwargs.pop(param)
++                    dropped = True
++            if not dropped:
++                raise
++    _record_usage(completion, kwargs["messages"][0]["content"], kwargs["model"])
++    return completion
++
++
+ def api_request(sys_prompt, user_prompt, temperature=0.0) -> None:
+     global total_completion_tokens, total_prompt_tokens
+     if policy_model.startswith("claude"):
+@@ -204,7 +264,8 @@ def api_request(sys_prompt, user_prompt, temperature=0.0) -> None:
+     else:
+         client = OpenAI()
+     if policy_model.startswith("o1") or policy_model.startswith("o3"):
+-        chat_completion = client.chat.completions.create(
++        chat_completion = _chat_create(
++            client,
+             messages=[
+                 {
+                     "role": "developer",
+@@ -218,8 +279,9 @@ def api_request(sys_prompt, user_prompt, temperature=0.0) -> None:
+             model=policy_model,
+             seed=0,
+         )
+-    if policy_model.startswith("vertex_ai/"):
+-        chat_completion = client.chat.completions.create(
++    elif policy_model.startswith("vertex_ai/"):
++        chat_completion = _chat_create(
++            client,
+             messages=[
+                 {
+                     "role": "system",
+@@ -234,7 +296,9 @@ def api_request(sys_prompt, user_prompt, temperature=0.0) -> None:
+             temperature=temperature,
+         )
+     else:
+-        chat_completion = client.chat.completions.create(
++        # gpt-4o and (local patch) gpt-5*: system prompt as a `system` message; temperature omitted for gpt-5*
++        chat_completion = _chat_create(
++            client,
+             messages=[
+                 {
+                     "role": "system",
+@@ -306,7 +370,7 @@ def get_SYS_PROMPT() -> str:
+     else:
+         sys_prompt = SYS_PROMPT
+     output_formater = ""
+-    if policy_model.startswith("o1") or policy_model.startswith("o3") or policy_model.startswith("gpt-4.1") or policy_model.startswith("gemini") or policy_model.startswith("meta-llama/") or policy_model.startswith("Qwen/") or policy_model.startswith("vertex_ai/gemini"):
++    if policy_model.startswith("o1") or policy_model.startswith("o3") or policy_model.startswith("gpt-5") or policy_model.startswith("gpt-4.1") or policy_model.startswith("gemini") or policy_model.startswith("meta-llama/") or policy_model.startswith("Qwen/") or policy_model.startswith("vertex_ai/gemini"):
+         output_formater = "\nOutput format: ```json [{\"name\": tool_name, \"args\": restrictions}, ...] ```"
+     if policy_model.startswith("claude") or policy_model.startswith("vertex_ai/claude"):
+         sys_prompt = sys_prompt[:-1]
+@@ -356,7 +420,7 @@ Output whether you want to update the policy start with Yes or No. If Yes, outpu
+ def get_SYS_PROMPT_2() -> str:
+     sys_prompt = SYS_PROMPT_2
+     output_formater = ""
+-    if policy_model.startswith("o1") or policy_model.startswith("o3"):
++    if policy_model.startswith("o1") or policy_model.startswith("o3") or policy_model.startswith("gpt-5"):
+         output_formater = "\nThe policy should be in JSON format: ```json [{\"name\": tool_name, \"args\": restrictions}, ...] ```"
+     if policy_model.startswith("gpt-4.1"):
+         output_formater = "\nThe policy should be in JSON format including the json code block: ```json [{\"name\": tool_name, \"args\": restrictions}, ...] ```"
